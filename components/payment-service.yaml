@@ -16,4 +16,4 @@ spec:
   owner: guests
   system: payments-platform
   providesApis:
-    - resource:default/payments-transaction-authorized-v1
+    - payments-transaction-authorized-v1
