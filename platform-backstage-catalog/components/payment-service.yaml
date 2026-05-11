@@ -1,0 +1,19 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: payment-service
+  description: Serviço responsável por autorizar e confirmar transações
+  tags:
+    - java
+    - spring-boot
+    - payments
+    - producer
+  annotations:
+    kafka.apache.org/produces: payments.transaction.authorized.v1
+spec:
+  type: service
+  lifecycle: production
+  owner: guests
+  system: payments-platform
+  dependsOn:
+    - resource:default/payments.transaction.authorized.v1

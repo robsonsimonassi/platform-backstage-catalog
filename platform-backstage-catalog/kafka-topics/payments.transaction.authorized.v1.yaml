@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: payments.transaction.authorized.v1
+  description: Tópico publicado quando uma transação é autorizada
+  tags:
+    - kafka
+    - payments
+    - transaction
+    - event
+  annotations:
+    kafka.apache.org/topic-name: payments.transaction.authorized.v1
+    kafka.apache.org/partitions: "3"
+    kafka.apache.org/replication-factor: "3"
+    kafka.apache.org/retention-ms: "604800000"
+    kafka.apache.org/producer: payment-service
+    kafka.apache.org/consumers: anti-fraud-service,notification-service
+    schema-registry.io/subject: payments.transaction.authorized.v1-value
+spec:
+  type: kafka-topic
+  owner: guests
+  system: payments-platform

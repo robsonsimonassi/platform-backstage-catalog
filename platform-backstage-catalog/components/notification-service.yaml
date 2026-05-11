@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: notification-service
+  description: Serviço responsável por enviar notificações após eventos de pagamento
+  tags:
+    - notifications
+    - consumer
+  annotations:
+    kafka.apache.org/consumes: payments.transaction.authorized.v1
+spec:
+  type: service
+  lifecycle: production
+  owner: guests
+  system: payments-platform
+  dependsOn:
+    - resource:default/payments.transaction.authorized.v1

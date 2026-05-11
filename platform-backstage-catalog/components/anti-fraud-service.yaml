@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: anti-fraud-service
+  description: Serviço responsável por analisar risco e fraude das transações
+  tags:
+    - java
+    - fraud
+    - consumer
+  annotations:
+    kafka.apache.org/consumes: payments.transaction.authorized.v1
+spec:
+  type: service
+  lifecycle: production
+  owner: guests
+  system: payments-platform
+  dependsOn:
+    - resource:default/payments.transaction.authorized.v1
