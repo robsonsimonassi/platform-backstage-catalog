@@ -1,7 +1,8 @@
-kapiVersion: backstage.io/v1alpha1
+apiVersion: backstage.io/v1alpha1
 kind: Location
 metadata:
   name: platform-backstage-catalog
+  description: Catálogo central de entidades do Backstage
 spec:
   type: url
   targets:
