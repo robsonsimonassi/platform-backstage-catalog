@@ -1,0 +1,77 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: payments-transaction-authorized-v1
+  description: Evento Kafka publicado quando uma transação é autorizada
+  tags:
+    - kafka
+    - asyncapi
+    - payments
+    - transaction
+spec:
+  type: asyncapi
+  lifecycle: production
+  owner: guests
+  system: payments-platform
+  definition: |
+    asyncapi: '2.6.0'
+    info:
+      title: payments.transaction.authorized.v1
+      version: '1.0.0'
+      description: Evento publicado quando uma transação é autorizada
+    channels:
+      payments.transaction.authorized.v1:
+        publish:
+          summary: Transação autorizada
+          message:
+            name: TransactionAuthorizedEvent
+            payload:
+              type: object
+              required:
+                - eventId
+                - eventType
+                - eventVersion
+                - occurredAt
+                - correlationId
+                - producer
+                - data
+              properties:
+                eventId:
+                  type: string
+                eventType:
+                  type: string
+                  enum:
+                    - TRANSACTION_AUTHORIZED
+                eventVersion:
+                  type: string
+                  enum:
+                    - v1
+                occurredAt:
+                  type: string
+                  format: date-time
+                correlationId:
+                  type: string
+                producer:
+                  type: string
+                  enum:
+                    - payment-service
+                data:
+                  type: object
+                  required:
+                    - transactionId
+                    - amount
+                    - currency
+                    - status
+                  properties:
+                    transactionId:
+                      type: string
+                    amount:
+                      type: number
+                    currency:
+                      type: string
+                      enum:
+                        - BRL
+                    status:
+                      type: string
+                      enum:
+                        - AUTHORIZED

@@ -14,5 +14,7 @@ spec:
   lifecycle: production
   owner: guests
   system: payments-platform
+  consumesApis:
+    - payments-transaction-authorized-v1
   dependsOn:
     - resource:default/payments.transaction.authorized.v1
